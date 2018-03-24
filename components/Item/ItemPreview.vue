@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .Item {
   box-sizing: border-box;
   position: relative;

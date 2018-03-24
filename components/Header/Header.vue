@@ -49,6 +49,9 @@ export default {
     align-items: center;
     padding: 0 20px;
     width: 189px;
+    img {
+      width: 100%;
+    }
     &__Text {
       margin: 0;
       width: 0;

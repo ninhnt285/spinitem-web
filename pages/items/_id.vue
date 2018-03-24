@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <h1 class="Item__Title">{{ item.title }}</h1>
-    <div class="Container">
-      <div class="Item">
+  <div class="Container">
+    <div class="Item">
+      <div class="Item__View">
         <no-ssr>
-          <v-touch class="Item__TouchArea"
+          <v-touch class="Item__View__TouchArea"
             v-on:panleft="prev"
             v-on:panright="next"
             v-bind:pan-options="{ direction: 'horizontal', threshold: 20 }"
@@ -13,12 +12,32 @@
         <template v-for="(image, key) in images">
           <img
             :key="key"
-            :class="{ Item__Image: true, hidden: key != currentIndex}"
+            :class="{ Item__View__Image: true, hidden: key != currentIndex}"
             :src="image.destination.replace('%s', '_500x500_square')"
           />
         </template>
       </div>
 
+      <div class="Item__Share">
+        <h1 class="Item__Title">{{ item.title }}</h1>
+
+        <div class="Item__Share__Box">
+          <h2>Embed Code</h2>
+          <div class="Item__Share__Box__Content">
+            <textarea v-model="embedCode"></textarea>
+          </div>
+        </div>
+
+        <div class="Item__Share__Box">
+          <h2>Social Share</h2>
+          <div class="Item__Share__Box__Content">
+            <button>Facebook</button>
+            <button>Twitter</button>
+            <button>Google Plus</button>
+          </div>
+        </div>
+      </div>
+      <!--
       <div class="Images">
         <template v-for="(image, key) in images">
           <img
@@ -28,6 +47,7 @@
           />
         </template>
       </div>
+    -->
     </div>
   </div>
 </template>
@@ -45,12 +65,14 @@ export default {
   data() {
     return {
       itemId: null,
-      currentIndex: 0
+      currentIndex: 0,
+      embedCode: ''
     }
   },
   created() {
     this.itemId = this.$route.params.id
     if (this.itemId) {
+      this.embedCode = `<spin-item item-id="${this.itemId}" \/>\n<script src="\/\/static.spinitem.com\/js\/spin-item.js"><\/script>`
       this.$store.dispatch('item/loadItem', this.itemId);
       this.$store.dispatch('image/loadImages', this.itemId);
     } else {
@@ -92,33 +114,68 @@ export default {
 }
 
 .Item {
-  width: 500px;
-  max-width: 50%;
-  position: relative;
-  float: left;
+  background-color: #DEDEDE;
+  flex: 0 0 auto;
+  display: flex;
   @media (max-width: 500px) {
-    max-width: 100%;
-    float: none;
+    flex-direction: column;
   }
-
   &__Title {
     text-align: center;
     font-size: 28px;
+    margin: 20px 10px;
+    color: #222222;
+    font-weight: 500;
   }
 
-  &__Image {
-    max-width: 100%;
-    display: block;
-    &.hidden {
-      display: none;
+  &__View {
+    width: 500px;
+    max-width: 50%;
+    position: relative;
+    flex-grow: 0;
+    @media (max-width: 500px) {
+      flex-grow: 1;
+      max-width: 100%;
+    }
+
+    &__Image {
+      max-width: 100%;
+      display: block;
+      &.hidden {
+        display: none;
+      }
+    }
+    &__TouchArea {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
     }
   }
 
-  &__TouchArea {
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
+  &__Share {
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+    &__Box {
+      width: 100%;
+      margin-bottom: 15px;
+      h2 {
+        font-size: 20px;
+        margin: 10px 0;
+        color: #222222;
+        font-weight: 400;
+      }
+
+      &__Content {
+        textarea {
+          width: 100%;
+          resize: none;
+        }
+      }
+    }
   }
 }
 
