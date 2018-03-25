@@ -4,8 +4,8 @@
       "name": "SpinItem Web",
       "script": "npm",
       "args" : "start",
-      "watch": ["app"],
-      "ignore_watch" : ["node_modules", "static", "dist"],
+      "watch": true,
+      "ignore_watch" : [".nuxt", "dist", "node_modules"],
       "autorestart": true,
       "restart_delay": 1000
     }
