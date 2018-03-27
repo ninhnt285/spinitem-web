@@ -7,7 +7,7 @@ export const state = () => ({
 export const getters = {
   items (state, getters, rootState, rootGetters) {
     let user = rootGetters['user/user']
-    if (user.id) {
+    if (user && user.id) {
       return state.items.filter(item => item.user_id == user.id)
     }
     return []
