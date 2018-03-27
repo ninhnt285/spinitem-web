@@ -3,6 +3,11 @@
   <ul class="Menu">
     <template v-if="isAuthenticated">
       <li class="Menu__Item">
+        <nuxt-link class="Menu__Item__Link" to="/shops">
+          Shops
+        </nuxt-link>
+      </li>
+      <li class="Menu__Item">
         <nuxt-link class="Menu__Item__Link" to="/auth/logout">
           Logout
         </nuxt-link>

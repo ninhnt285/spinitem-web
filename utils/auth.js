@@ -4,7 +4,7 @@ import Cookie from 'js-cookie'
 export const setToken = (token) => {
   if (process.SERVER_BUILD) return
   window.localStorage.setItem('token', token)
-  Cookie.set('jwt', token)
+  Cookie.set('jwt', token, { expires: 30 })
 }
 
 export const removeToken = () => {

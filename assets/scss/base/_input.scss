@@ -1,0 +1,33 @@
+.input-group {
+  width: 100%;
+  margin: 0 0 16px;
+  position: relative;
+
+  label {
+    font-size: 16px;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .input-control {
+    width: 100%;
+    height: 45px;
+    padding: 8px 12px;
+    border: 1px solid #c4c6d4;
+    border-radius: 5px;
+  }
+
+  .input-control-addon {
+    position: absolute;
+    right: 2px;
+    padding: 8px;
+    height: 21px;
+    line-height: 21px;
+    box-sizing: content-box;
+    background-color: #EFEFEF;
+    bottom: 22px;
+    border-radius: 3px;
+  }
+}

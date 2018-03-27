@@ -5,8 +5,12 @@ export const state = () => ({
 })
 
 export const getters = {
-  items (state) {
-    return state.items
+  items (state, getters, rootState, rootGetters) {
+    let user = rootGetters['user/user']
+    if (user.id) {
+      return state.items.filter(item => item.user_id == user.id)
+    }
+    return []
   },
 
   getItemById: (state) => (id) => {

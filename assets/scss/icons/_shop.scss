@@ -1,0 +1,9 @@
+.shop {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: url('~/static/icon/shops.png') no-repeat;
+  &-shopify {
+    background-position: 0 0;
+  }
+}
