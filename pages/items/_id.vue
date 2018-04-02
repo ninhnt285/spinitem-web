@@ -173,6 +173,8 @@ export default {
         textarea {
           width: 100%;
           resize: none;
+          padding: 5px;
+          border: 1px solid #BBBBBB;
         }
       }
     }

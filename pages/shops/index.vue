@@ -3,12 +3,12 @@
     <h2>Your Shops</h2>
     <div class="Container">
       <template v-for="shop in shops">
-        <div :key="shop.id" class="Shop">
+        <nuxt-link class="Shop" :to="{ name: 'shops-id', params: {id: shop.id}}" :key="shop.id">
           <p class="Shop__Title">
             <span :class="{shop: true, 'shop-shopify': shop.platform == 'shopify'}"></span>
             {{ shop.key }}
           </p>
-        </div>
+        </nuxt-link>
       </template>
 
       <div class="Shop AddShop" @click="openAddShop">
@@ -79,7 +79,7 @@ export default {
             case 'shopify':
               let redirectUri = encodeURIComponent(process.env.clientURL + "/shops/redirect/shopify")
               let nonce = newShop.session
-              let scopes = 'read_themes,write_themes'
+              let scopes = 'read_themes,write_themes,read_products,write_products,read_product_listings,read_collection_listings'
               let link = `https://${newShop.key}.myshopify.com/admin/oauth/authorize?client_id=${process.env.shopifyAPIKey}&scope=${scopes}&redirect_uri=${redirectUri}&state=${nonce}`
               window.location.replace(link)
               break;
