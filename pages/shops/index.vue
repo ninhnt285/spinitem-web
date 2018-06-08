@@ -77,7 +77,7 @@ export default {
 
           switch(newShop.platform) {
             case 'shopify':
-              let redirectUri = encodeURIComponent(process.env.clientURL + "/shops/redirect/shopify")
+              let redirectUri = encodeURIComponent(process.env.clientURL + "/shops/callback/shopify")
               let nonce = newShop.session
               let scopes = 'read_themes,write_themes,read_products,write_products,read_product_listings,read_collection_listings'
               let link = `https://${newShop.key}.myshopify.com/admin/oauth/authorize?client_id=${process.env.shopifyAPIKey}&scope=${scopes}&redirect_uri=${redirectUri}&state=${nonce}`
