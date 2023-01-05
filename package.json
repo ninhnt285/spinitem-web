@@ -22,7 +22,7 @@
     "js-cookie": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "normalize.css": "^8.0.0",
-    "nuxt": "^1.0.0",
+    "nuxt": "^3.0.0",
     "vue-touch": "^2.0.0-beta.4"
   },
   "devDependencies": {
